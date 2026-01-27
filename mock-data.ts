@@ -1,3 +1,10 @@
+export type ProductItem = {
+    id: number;
+    name: string;
+    price: number;
+    img_url: string;
+}
+
 export const products = [
     {
         id: 1,

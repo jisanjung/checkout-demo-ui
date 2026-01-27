@@ -1,6 +1,10 @@
+'use client';
+
+import { useStore } from '@/store';
 import React from 'react';
 
 interface ProductItemInput {
+    key: number;
     name: string;
     price: number;
     img_url: string;
@@ -14,14 +18,19 @@ const convertNumberToCurrency = (number: number) => {
     return USDollar.format(number);
 }; 
 
-const ProductItem: React.FC<ProductItemInput> = ({ name, price, img_url, }) => {
+const ProductItem: React.FC<ProductItemInput> = ({ key, name, price, img_url, }) => {
+
+    const addToCart = useStore((state) => state.addToCart);
+
   return (
     <div className='bg-white p-3 m-3 shadow rounded-4'>
         <img src={img_url} alt={name} width={250} height={250} className='object-fit-cover rounded-3 mb-3'/>
         <p className='fw-bold mb-0 text-center'>{name}</p>
         <p className='fw-light mb-3 text-center'>{convertNumberToCurrency(price)}</p>
         <div className='d-flex justify-content-center'>
-            <button className='btn btn-primary'>Add to Cart</button>
+            <button className='btn btn-primary' onClick={() => {
+                addToCart({ id: key, name, price, img_url });
+            }}>Add to Cart</button>
         </div>
     </div>
   )
