@@ -3,6 +3,7 @@ export type ProductItem = {
     name: string;
     price: number;
     img_url: string;
+    cartItemId?: string;
 }
 
 export const products = [

@@ -2,9 +2,11 @@
 
 import { useStore } from '@/store';
 import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 interface ProductItemInput {
     key: number;
+    id: number;
     name: string;
     price: number;
     img_url: string;
@@ -18,8 +20,9 @@ const convertNumberToCurrency = (number: number) => {
     return USDollar.format(number);
 }; 
 
-const ProductItem: React.FC<ProductItemInput> = ({ key, name, price, img_url, }) => {
+const ProductItem: React.FC<ProductItemInput> = ({ id, name, price, img_url, }) => {
 
+    const cartItems = useStore((state) => state.cart);
     const addToCart = useStore((state) => state.addToCart);
 
   return (
@@ -29,7 +32,7 @@ const ProductItem: React.FC<ProductItemInput> = ({ key, name, price, img_url, })
         <p className='fw-light mb-3 text-center'>{convertNumberToCurrency(price)}</p>
         <div className='d-flex justify-content-center'>
             <button className='btn btn-primary' onClick={() => {
-                addToCart({ id: key, name, price, img_url });
+                addToCart({ id, name, price, img_url, cartItemId: uuidv4() });
             }}>Add to Cart</button>
         </div>
     </div>
