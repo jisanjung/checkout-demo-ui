@@ -6,20 +6,19 @@ type State = {
 };
 
 type Action = {
+    showCart: boolean;
     addToCart: (product: ProductItem) => void;
     removeFromCart: (product: string) => void;
+    setShowCart: (decision: boolean) => void;
 };
 
 export const useStore = create<State & Action>((set) => ({
+    showCart: false,
     cart: [],
     addToCart: (product) => set((state) => ({ cart: [...state.cart, product ] })),
     removeFromCart: (cartItemId) => set((state) => {
-        // if (state.cart.some(item => item.cartItemId === cartItemId)) {
-        //     const cartAfterItemRemoved = state.cart.filter(item => item.cartItemId !== cartItemId);
-        //     return { cart: cartAfterItemRemoved }
-        // }
-        // return { cart: state.cart };
         const cartAfterItemRemoved = state.cart.filter(item => item.cartItemId !== cartItemId);
         return { cart: cartAfterItemRemoved }
     }),
+    setShowCart: (decision) => set(() => ({ showCart: decision })),
 }));

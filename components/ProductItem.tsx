@@ -22,8 +22,8 @@ const convertNumberToCurrency = (number: number) => {
 
 const ProductItem: React.FC<ProductItemInput> = ({ id, name, price, img_url, }) => {
 
-    const cartItems = useStore((state) => state.cart);
     const addToCart = useStore((state) => state.addToCart);
+    const setShowCart = useStore(state => state.setShowCart);
 
   return (
     <div className='bg-white p-3 m-3 shadow rounded-4'>
@@ -33,6 +33,7 @@ const ProductItem: React.FC<ProductItemInput> = ({ id, name, price, img_url, }) 
         <div className='d-flex justify-content-center'>
             <button className='btn btn-primary' onClick={() => {
                 addToCart({ id, name, price, img_url, cartItemId: uuidv4() });
+                setShowCart(true);
             }}>Add to Cart</button>
         </div>
     </div>

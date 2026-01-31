@@ -3,12 +3,12 @@
 import { useStore } from '@/store';
 import { FiShoppingCart } from "react-icons/fi";
 import Cart from './Cart';
-import { useState } from 'react';
 
 const Nav = () => {
 
     const cartItems = useStore(state => state.cart);
-    const [showCart, setShowCart] = useState(false);
+    const showCart = useStore(state => state.showCart);
+    const setShowCart = useStore(state => state.setShowCart);
 
   return (
     <nav className='bg-primary'>
@@ -21,7 +21,7 @@ const Nav = () => {
                 <span className='text-white fs-4'>({cartItems.length})</span>
             </button>
         </div>
-        <Cart className={`${showCart ? 'd-block' : 'd-none'}`} setShowCart={setShowCart}/>
+        <Cart className={`${showCart ? 'd-block' : 'd-none'}`}/>
     </nav>
   )
 }

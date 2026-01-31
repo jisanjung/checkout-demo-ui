@@ -7,10 +7,11 @@ import { ProductItem } from '@/mock-data';
 
 type CartInput = {
     className: string;
-    setShowCart: Dispatch<SetStateAction<boolean>>;
 };
 
-const Cart = ({ className, setShowCart }: CartInput) => {
+const Cart = ({ className }: CartInput) => {
+
+    const setShowCart = useStore(state => state.setShowCart);
 
     const cartItems = useStore(state => state.cart);
     const uniqueItems = cartItems.reduce<ProductItem[]>((accumulator, previous) =>
@@ -32,6 +33,11 @@ const Cart = ({ className, setShowCart }: CartInput) => {
                 )
             })}
         </ul>
+        <div className='d-flex justify-content-center'>
+            <button className="btn btn-link"
+                onClick={() => setShowCart(false)}
+            >Continue shopping</button>
+        </div>
     </div>
   )
 }
