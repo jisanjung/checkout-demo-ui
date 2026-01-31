@@ -11,10 +11,10 @@ type CartItemInput = {
 
 const CartItem = ({ product }: CartItemInput) => {
 
-    const [quantity, setQuantity] = useState(1);
     const addToCart = useStore(state => state.addToCart);
     const removeFromCart = useStore(state => state.removeFromCart);
     const cart = useStore(state => state.cart);
+    const quantity = cart.filter((item => item.id === product.id)).length;
 
   return (
     <li className="list-group-item d-flex justify-content-between align-items-center">
@@ -28,11 +28,10 @@ const CartItem = ({ product }: CartItemInput) => {
         <div>
             <button className='btn btn-primary btn-small' style={{ width: '35px' }}
                 onClick={() => {
-                    setQuantity(quantity + 1);
                     addToCart({ ...product, cartItemId: uuidv4() });
                 }}
             >+</button>
-            <span className='d-block text-center'>{cart.filter((item => item.id === product.id)).length}</span>
+            <span className='d-block text-center'>{quantity}</span>
             <button className='btn btn-primary btn-small' style={{ width: '35px' }}
                 onClick={() => {
                     removeFromCart(product?.cartItemId || '');

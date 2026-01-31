@@ -18,7 +18,7 @@ const Cart = ({ className, setShowCart }: CartInput) => {
     const sortedItems = uniqueItems.sort((a, b) => a.id - b.id);
 
   return (
-    <div className={`${className} position-absolute top-0 end-0 bottom-0 bg-white shadow p-2`} style={{ width: '300px' }}>
+    <div id='cartContainer' className={`${className} position-fixed top-0 end-0 bottom-0 bg-white shadow p-2`}>
         <button type="button" className="btn-close" aria-label="Close"
             onClick={() => setShowCart(false)}
         ></button>

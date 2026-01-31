@@ -3,7 +3,7 @@ import ProductItem from './ProductItem'
 
 const ProductList = () => {
   return (
-    <div className='d-flex flex-wrap'>
+    <div className='d-flex flex-wrap justify-content-center'>
         {products.map(product => {
             return (
                 <ProductItem
