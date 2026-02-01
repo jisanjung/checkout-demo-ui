@@ -1,13 +1,13 @@
 import { create } from 'zustand';
-import { ProductItem } from './mock-data';
+import { CartItemData } from './mock-data';
 
 type State = {
-    cart: ProductItem[]
+    cart: CartItemData[]
 };
 
 type Action = {
     showCart: boolean;
-    addToCart: (product: ProductItem) => void;
+    addToCart: (product: CartItemData) => void;
     removeFromCart: (product: string) => void;
     setShowCart: (decision: boolean) => void;
 };

@@ -1,12 +1,11 @@
 'use client';
 
-import { ProductItem } from '@/mock-data';
+import { CartItemData } from '@/mock-data';
 import { useStore } from '@/store';
-import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 type CartItemInput = {
-    product: ProductItem;
+    product: CartItemData;
 };
 
 const CartItem = ({ product }: CartItemInput) => {

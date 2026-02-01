@@ -1,9 +1,8 @@
 'use client';
 
 import { useStore } from '@/store';
-import { Dispatch, SetStateAction, useEffect } from 'react';
 import CartItem from './CartItem';
-import { ProductItem } from '@/mock-data';
+import { CartItemData } from '@/mock-data';
 import CheckoutButton from './CheckoutButton';
 
 type CartInput = {
@@ -15,7 +14,7 @@ const Cart = ({ className }: CartInput) => {
     const setShowCart = useStore(state => state.setShowCart);
 
     const cartItems = useStore(state => state.cart);
-    const uniqueItems = cartItems.reduce<ProductItem[]>((accumulator, previous) =>
+    const uniqueItems = cartItems.reduce<CartItemData[]>((accumulator, previous) =>
         accumulator.concat(accumulator.find(item => item.id === previous.id) ? [] : [previous]), []);
     const sortedItems = uniqueItems.sort((a, b) => a.id - b.id);
 
