@@ -4,6 +4,7 @@ import { useStore } from '@/store';
 import { Dispatch, SetStateAction, useEffect } from 'react';
 import CartItem from './CartItem';
 import { ProductItem } from '@/mock-data';
+import CheckoutButton from './CheckoutButton';
 
 type CartInput = {
     className: string;
@@ -33,7 +34,11 @@ const Cart = ({ className }: CartInput) => {
                 )
             })}
         </ul>
-        <div className='d-flex justify-content-center'>
+        <div className={cartItems?.length > 0 ? 'd-grid gap-2 mx-auto' : 'd-none'}>
+            <CheckoutButton/>
+            <span className='text-center'>or</span>
+        </div>
+        <div className='d-flex justify-content-center '>
             <button className="btn btn-link"
                 onClick={() => setShowCart(false)}
             >Continue shopping</button>
